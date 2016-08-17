@@ -38,6 +38,13 @@
     </bean>
     <bean id="rabbitChannel" factory-bean="rabbitChannelFactory" factory-method="get" />
 
+    <bean id="jedisClusterFactory" class="developer.github.factory.redis.JedisClusterFactory" destroy-method="destroy">
+        <constructor-arg index="0" value="${redis.hosts}"/>
+        <constructor-arg index="1" value="${redis.timeout}"/>
+        <constructor-arg index="2" value="${redis.maxRedirections}"/>
+    </bean>
+    <bean id="jedisCluster" factory-bean="jedisClusterFactory" factory-method="get" />
+
     <bean id="objectMapperFactory" class="developer.github.factory.jackson.ObjectMapperFactory" destroy-method="destroy" />
     <bean id="objectMapper" factory-bean="objectMapperFactory" factory-method="get" />
     <bean id="bindModuleFactory" class="developer.github.factory.jackson.BindModuleFactory" destroy-method="destroy">
