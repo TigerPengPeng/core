@@ -17,11 +17,16 @@
                 <value>classpath*:config/sys.*.properties</value>
             </list>
         </property>
-        <property name="fileEncoding" value="utf-8"></property>
+        <property name="fileEncoding" value="utf-8" />
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="localOverride" value="true" />
     </bean>
 
     <context:property-placeholder properties-ref="sysConfig" />
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="localOverride" value="true" />
         <property name="properties" ref="sysConfig" />
     </bean>
 
