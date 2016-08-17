@@ -53,6 +53,6 @@
     <bean id="objectMapperFactory" class="developer.github.factory.jackson.ObjectMapperFactory" destroy-method="destroy" />
     <bean id="objectMapper" factory-bean="objectMapperFactory" factory-method="get" />
     <bean id="bindModuleFactory" class="developer.github.factory.jackson.BindModuleFactory" destroy-method="destroy">
-        <constructor-arg index="0" value="${modules}" />
+        <constructor-arg index="0" value="${modules:#{null}}" />
     </bean>
 </beans>

@@ -3,6 +3,7 @@ package developer.github.factory.jackson;
 import com.fasterxml.jackson.databind.Module;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.PreDestroy;
@@ -25,6 +26,10 @@ public class BindModuleFactory {
 
     public BindModuleFactory(String moduleString) {
         List<String> array = getModulesClassName(moduleString);
+        if (CollectionUtils.isEmpty(array)) {
+            return;
+        }
+
         try {
             for (String module : array) {
                 Class clazz = Class.forName(module);
@@ -40,6 +45,9 @@ public class BindModuleFactory {
     }
 
     private List<String> getModulesClassName(String moduleString) {
+        if (StringUtils.isEmpty(moduleString)) {
+            return null;
+        }
         String[] array = moduleString.split(",");
         if (array.length == 0) {
             return null;
