@@ -33,8 +33,7 @@
     <bean id="rabbitConnectionFactory" class="developer.github.factory.rabbitmq.RabbitConnectionFactory" destroy-method="destroy">
         <constructor-arg index="0" value="${rabbit.username}"/>
         <constructor-arg index="1" value="${rabbit.password}"/>
-        <constructor-arg index="2" value="${rabbit.vhost}"/>
-        <constructor-arg index="3" value="${rabbit.address}"/>
+        <constructor-arg index="2" value="${rabbit.address}"/>
     </bean>
     <bean id="rabbitConnection" factory-bean="rabbitConnectionFactory" factory-method="get" />
 

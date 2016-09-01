@@ -3,6 +3,7 @@ package developer.github.factory.rabbitmq;
 import com.rabbitmq.client.Address;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import developer.github.utils.EnviromentLevelUtils;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -24,12 +25,11 @@ public class RabbitConnectionFactory {
 
     public RabbitConnectionFactory(String username,
                                    String password,
-                                   String vhost,
                                    String address) {
         ConnectionFactory factory = new ConnectionFactory();
+        factory.setVirtualHost(EnviromentLevelUtils.getLevel());
         factory.setUsername(username);
         factory.setPassword(password);
-        factory.setVirtualHost(vhost);
         factory.setAutomaticRecoveryEnabled(true);
         factory.setNetworkRecoveryInterval(5000);
 
