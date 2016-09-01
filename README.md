@@ -5,4 +5,6 @@
     # almost-universal-relationship #
     # user-meta-serializer #
     
-    mvn clean install -Dscale=/
+       mvn clean install -DskipTests -U
+       or
+       mvn clean install -Dscale=/ (if you can connect to your rabbitmq server)
